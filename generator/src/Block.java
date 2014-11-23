@@ -1,7 +1,3 @@
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Class: Generator 
  *  
@@ -13,6 +9,13 @@ import java.util.List;
  * teaching at Padova university (Università degli Studi di Padova).
  */
 
+//package generator;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Block {
     private String id;
     private String value;
@@ -21,7 +24,7 @@ public class Block {
     private String leftId;
     private String rightId;
 
-    public static String EMPTY_BLOCK = "vuoto";
+    public static String EMPTY_BLOCK = "VUOPTO";
 
     public Block(String uniqueId, String val, String top, String bottom, String right, String left) {
         id = uniqueId;

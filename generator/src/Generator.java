@@ -9,15 +9,25 @@
  * teaching at Padova university (Università degli Studi di Padova).
  */
 
+//package generator;
+
+//import generator.Block;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.io.IOException;
 
 public class Generator {
 	private List<Block> blocks;
 	private int columns = 0;
 	private int rows = 0;
 	private String sentence = "";
+
+    private static String OUT_FILE = "random_puzzle.txt";
 
 	public static void main(String[] args) {
 		// Parse the args list
@@ -43,6 +53,7 @@ public class Generator {
 
         Generator generator = new Generator(columnsNumber, rowsNumber, puzzleSentence);
         generator.generateBlocks();
+        generator.outputFile(OUT_FILE);
 	}
 
 	public Generator(int columnsNumber, int rowsNumber, String puzzleSentence) {
@@ -85,22 +96,30 @@ public class Generator {
             }
             blocks.add(block);
         }
-        
-        for (int r=0; r<rows; ++r) {
-            for (int c=0; c<columns; ++c) {
-                //System.out.print(blocks.get((r*columns)+c).getValue());
-                System.out.println(blocks.get((r*columns)+c).toString());
-            }
-            System.out.print("\n");
-        }
 
 	}
+
+    public String blocksToString () {
+        String blocksStr = "";
+        for (Block block : blocks) {
+            blocksStr = blocksStr + "\n" + block.toString();
+        }
+        return blocksStr;
+    }
 
 	public void randomizeBlocks() {
-
+        Collections.shuffle(blocks);
 	}
 
-	public void outputFile() {
-
+	public void outputFile(Strng filename) {
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(filename), "UTF-8"));
+            writer.write(this.blocksToString());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 }
