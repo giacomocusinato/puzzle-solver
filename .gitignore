@@ -1,4 +1,9 @@
+# Output dir
 out
+
+# Make scrips
 *.sh
+
+# Intellij project files
 workspace.xml
 tasks.xml
