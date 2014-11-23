@@ -1,5 +1,4 @@
-# Intellij project files
-
 out
+*.sh
 workspace.xml
 tasks.xml
