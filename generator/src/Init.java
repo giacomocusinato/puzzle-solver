@@ -1,7 +1,7 @@
 /**
 * Init 
 * 
-* Initializer for the Generator class.
+* Generator initializer.
 * 
 * Part of the PuzzleResolver project for Parallel and Concurrent Programming
 * teaching at Padova university (Università degli Studi di Padova).
@@ -12,6 +12,8 @@
 */
 
 public class Init {
+	private static String OUT_FILE = "random_puzzle.txt";
+
 	public static void main(String[] args) {
 		// Parse the args list
 		if (args.length < 3) {
@@ -36,6 +38,7 @@ public class Init {
 
         Generator generator = new Generator(columnsNumber, rowsNumber, puzzleSentence);
         generator.generateBlocks();
+        generator.randomizeBlocks();
         generator.outputFile(OUT_FILE);
 	}
 }

@@ -1,20 +1,18 @@
-/**
- * Class: Generator 
- *  
- * Author: Giacomo Cusinato
- *
- * Creation date: 21/11/201
- *
- * Part of the PuzzleResolver project for Parallel and Concurrent Programming
- * teaching at Padova university (Università degli Studi di Padova).
- */
-
-//package generator;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* Block 
+* 
+* Represent a single puzzle block.
+* 
+* Part of the PuzzleResolver project for Parallel and Concurrent Programming
+* teaching at Padova university (Università degli Studi di Padova).
+*
+* @author Giacomo Cusinato
+* @version 1.0
+*/
 
 public class Block {
     private String id;
@@ -24,7 +22,7 @@ public class Block {
     private String leftId;
     private String rightId;
 
-    public static String EMPTY_BLOCK = "VUOPTO";
+    public static String EMPTY_BLOCK = "VUOTO";
 
     public Block(String uniqueId, String val, String top, String bottom, String right, String left) {
         id = uniqueId;
