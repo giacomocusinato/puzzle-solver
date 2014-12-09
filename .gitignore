@@ -12,3 +12,4 @@ tasks.xml
 *.log
 *.toc
 *.aux
+*.gz
