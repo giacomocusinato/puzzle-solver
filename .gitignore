@@ -7,3 +7,8 @@ out
 # Intellij project files
 workspace.xml
 tasks.xml
+
+# LaTeX output files
+*.log
+*.toc
+*.aux
