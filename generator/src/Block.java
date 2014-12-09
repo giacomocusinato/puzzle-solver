@@ -24,7 +24,7 @@ public class Block {
 
     public static String EMPTY_BLOCK = "VUOTO";
 
-    public Block(String uniqueId, String val, String top, String bottom, String right, String left) {
+    public Block(String uniqueId, String val, String top, String right, String bottom, String left) {
         id = uniqueId;
         value = val;
         topId = top;

@@ -42,9 +42,9 @@ public class Generator {
             Block block = new Block(
                     Integer.toString(i),
                     blockValue,
-                    Integer.toString(i-5),
-                    Integer.toString(i+5),
+                    Integer.toString(i-columns),
                     Integer.toString(i+1),
+                    Integer.toString(i+columns),
                     Integer.toString(i-1)
             );
             // If the block is in the first row, the topId is empty
