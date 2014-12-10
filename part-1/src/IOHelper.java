@@ -1,5 +1,3 @@
-import com.sun.javafx.geom.AreaOp;
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Created by Giacomo on 07/12/2014.
+ * IOHelper
+ *
+ * Expose methods to reading/writing Strings to file.
+ *
+ * Part of the PuzzleResolver project for Parallel and Concurrent Programming
+ * teaching at Padova university (Università degli Studi di Padova).
+ *
+ * @author Giacomo Cusinato
+ * @version 1.0
  */
 public class IOHelper {
     private static Charset charset = StandardCharsets.UTF_8;

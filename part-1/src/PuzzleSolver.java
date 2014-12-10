@@ -1,10 +1,19 @@
-/**
- * Created by Giacomo on 07/12/2014.
- */
-
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * PuzzleSolver
+ *
+ * Main class of the puzzle SolverProject. Performs input of files containing 
+ * a well typed puzzle and output the solved solution.	 
+ *
+ * Part of the PuzzleResolver project for Parallel and Concurrent Programming
+ * teaching at Padova university (Università degli Studi di Padova).
+ *
+ * @author Giacomo Cusinato
+ * @version 1.0
+ */
 
 public class PuzzleSolver {
     private HashMap<String, Block> puzzleMap;
