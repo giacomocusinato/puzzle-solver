@@ -14,3 +14,9 @@ tasks.xml
 *.aux
 *.gz
 *.pdf
+
+# Text files
+*.txt
+
+# System files
+.DS_Store
