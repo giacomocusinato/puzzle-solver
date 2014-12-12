@@ -155,6 +155,12 @@ public class PuzzleSolver {
         return rows;
     }
 
+    /**
+     * Get's the puzzle result both linear and
+     * tabular version, plus the number of row and
+     * columns
+     * @return
+     */
     public String getPuzzleResult() {
         return getInlineResult() +
                 System.lineSeparator() +

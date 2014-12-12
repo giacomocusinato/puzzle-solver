@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 /**
  * IOHelper
  *
- * Expose methods to reading/writing Strings to file.
+ * Expose methods for reading/writing Strings to file.
  *
  * Part of the PuzzleResolver project for Parallel and Concurrent Programming
  * teaching at Padova university (Università degli Studi di Padova).
@@ -22,6 +22,7 @@ public class IOHelper {
 
     /**
      * Performs a read in the file with the given path
+     *
      * @param inputFile
      * @return
      */
@@ -30,8 +31,9 @@ public class IOHelper {
         try {
             inputPath = Paths.get(inputFile);
         } catch (InvalidPathException ex) {
-            exceptionHelper("Invalid input path", ex.getMessage());
-            return  "";
+            System.out.println("Invalid input path. Details:");
+            ex.printStackTrace();
+            return "";
         }
 
         StringBuilder content = new StringBuilder();
@@ -43,13 +45,15 @@ public class IOHelper {
                 content.append(line + System.lineSeparator());
             }
         } catch (IOException ex) {
-            exceptionHelper("An IO error has occurred.", ex.getMessage());
+            System.out.println("An IO error has occurred. Details: ");
+            ex.printStackTrace();
         } finally {
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException ex) {
-                    exceptionHelper("An IO error has occurred.", ex.getMessage());
+                    System.out.println("An IO error has occurred. Details: ");
+                    ex.printStackTrace();
                 }
             }
         }
@@ -59,31 +63,22 @@ public class IOHelper {
 
     /**
      * Writes the given String in the file with the given path
+     *
      * @param outputFile
      * @param content
      */
-    public  static void writeString(String outputFile, String content) {
+    public static void writeString(String outputFile, String content) {
         BufferedWriter writer = null;
         try {
-/*
-            File yourFile = new File(outputFile);
-            if(!yourFile.exists()) {
-                yourFile.createNewFile();
-            }
-*/
             writer = new BufferedWriter(new OutputStreamWriter(
                     new FileOutputStream(outputFile), "UTF-8"));
             writer.write(content);
             writer.close();
         } catch (IOException ex) {
-            //exceptionHelper("An IO error has occurred.", ex.printStackTrace());
+            System.out.println("An IO error has occurred. Details:");
             ex.printStackTrace();
         }
 
     }
+}
 
-    private static void exceptionHelper(String message, String errorMessage) {
-        System.out.println(message);
-        if (errorMessage != null)
-            System.out.println(String.format("Error message: %s", errorMessage));
-    }}
