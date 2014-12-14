@@ -16,7 +16,7 @@ La classe IOHelper si occupa di eseguire tutte le operazioni di lettura e scritt
 
 \paragraph{Metodi:}
 \begin{itemize}
-\item \texttt{public static String readString(String inputFile)}: questo metodo effettua lettura di un file nel percorso indicato del parametro formale \texttt{inputFile} e ritorna il flusso letto tramite un oggetto di tipo \texttt{String}. Il metodo utilizza classi che facilitano l'input da file come \texttt{Path} (instrodotta in Java 7) che permette di identificare un percorso speficico nel file system (in questo caso \texttt{inputFile}) e \texttt{BufferedReader} che espone il metodo \texttt{readLine()} per la lettura linea per linea del file specificato. 
+\item \texttt{public static String readString(String inputFile)}: questo metodo effettua lettura di un file nel percorso indicato del parametro formale \texttt{inputFile} e ritorna il flusso letto tramite un oggetto di tipo \texttt{String}. Il metodo utilizza classi che facilitano l'input da file come \texttt{Path} (introdotta in Java 7) che permette di identificare un percorso speficico nel file system (in questo caso \texttt{inputFile}) e \texttt{BufferedReader} che espone il metodo \texttt{readLine()} per la lettura linea per linea del file specificato. 
 
 \item \texttt{public static void writeString(String outputFile, String content)}: questo metodo effettua una scrittura della stringa contenuta nel parametro formale \texttt{content} nel percorso indicato da \texttt{inputFile}. Esso utilizza un oggetto di tipo \texttt{BufferedWriter}, costruito tramite un oggetto di tipo \texttt{OutputStreamWriter} a cui viene assegnato il flusso di output rispetto al file indicato nel parametro formale (tramite \texttt{FileOutputStream}) e il la codifica dei caratteri (\texttt{Charset}) da utilizzare.
 \end{itemize}
@@ -36,7 +36,7 @@ Tutti i campi dati sono necessari per costruire un oggetto di tipo \texttt{Block
 \item \texttt{private String leftId}: contiene l'identificatore del blocco a sinistra
 \end{itemize} 
 
-Risulta inoltre presente un attributo statico \texttt{EMPTY\_BLOCK}, che rappresenta l'identificatore direzionale (quindi \texttt{topId}, \texttt{rightId}, \texttt{bottomId} o \texttt{leftId}) di un pezzo vicino ad un bordo del puzzle. Il sua valore è una convenzione del progetto ed è rappresentato dalla string \texttt{"VUOTO"}.
+Risulta inoltre presente un attributo statico \texttt{EMPTY\_BLOCK}, che rappresenta l'identificatore direzionale (quindi \texttt{topId}, \texttt{rightId}, \texttt{bottomId} o \texttt{leftId}) di un pezzo vicino ad un bordo del puzzle. Il sua valore è una convenzione del progetto ed è rappresentato dalla stringa \texttt{"VUOTO"}.
 
 \subsection{La classe \texttt{PuzzleSolver}}
 La classe \texttt{PuzzleSolver} è la classe di riferimento del programma, ovvero quella che contiene l'algorimo di risoluzione ed elabora i dati in accesso ed uscita. 
@@ -49,7 +49,7 @@ La classe \texttt{PuzzleSolver} è la classe di riferimento del programma, ovver
 \item \texttt{private String[][] orderedKeys}: un array bidimensionale che contiene gli \texttt{id} di tutti i pezzi. Rappresenterà il puzzle ordinato alla fine dell'algoritmo.
 \end{itemize} 
 
-\`{E} stato scelto di utilizzare un campo dati di tipo \texttt{HashMap<String, Block>} accedere in modo casuale a tutti gli oggetti di tipo \texttt{Block} a partire dal loro \texttt{id} in modo più semplice e performante rispetto, ad esempio, and un semplice array o una lista.
+\`{E} stato scelto di utilizzare un campo dati di tipo \texttt{HashMap<String, Block>} per accedere in modo casuale a tutti gli oggetti di tipo \texttt{Block} a partire dal loro \texttt{id} in modo più semplice e performante rispetto, ad esempio, and un semplice array o una lista.
 
 \paragraph{Metodi:}
 \begin{itemize}
