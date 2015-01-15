@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
  * teaching at Padova university (Università degli Studi di Padova).
  *
  * @author Giacomo Cusinato
- * @version 1.0
+ * @version 2.0
  */
 
 public class PuzzleSolver {
