@@ -1,12 +1,15 @@
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 /**
  * PuzzleSolver
  *
- * Main class of the puzzle SolverProject. Performs input of files containing 
- * a well typed puzzle and output the solved solution.	 
+ * Main class of the puzzle SolverProject. Performs input of files containing
+ * a well typed puzzle and output the solved solution.
  *
  * Part of the PuzzleResolver project for Parallel and Concurrent Programming
  * teaching at Padova university (Università degli Studi di Padova).
@@ -69,12 +72,14 @@ public class PuzzleSolver {
             }
         }
 
-        // Complete each row with the remaining keys
-        for (int c = 0; c < cols; ++c) {
-            for (int r = 1; r < rows; ++r) {
-                orderedKeys[r][c] = puzzleMap.get(orderedKeys[r-1][c]).getRightId();
-            }
+
+        ExecutorService executor = Executors.newFixedThreadPool(5);
+        for (int r = 0; r < cols; ++r) {
+            Runnable thread = new PuzzleThread(r, this);
+            executor.execute(thread);
         }
+        executor.shutdown();
+        while (!executor.isTerminated()) { } // Wait here until the executor finish his work
 
 
         // Reorder the rows
@@ -96,6 +101,13 @@ public class PuzzleSolver {
                     rowSwap(c + 1, k);
                 }
             }
+        }
+    }
+
+
+    public void reorderRow(int row) {
+        for (int r = 1; r < rows; ++r) {
+            orderedKeys[r][row] = puzzleMap.get(orderedKeys[r-1][row]).getRightId();
         }
     }
 

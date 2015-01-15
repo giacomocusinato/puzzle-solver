@@ -1,7 +1,7 @@
 /**
  * PuzzleThread
  *
- * Represent a Thread object for apply parallel operation in the PuzzleSolver.  
+ * Represent a Thread object for apply parallel operation in the PuzzleSolver.
  *
  * Part of the PuzzleResolver project for Parallel and Concurrent Programming
  * teaching at Padova university (Università degli Studi di Padova).
@@ -11,17 +11,15 @@
  */
 
 public class PuzzleThread implements Runnable {
-	private int firstRow; // First row to order
-	private int columSpan; // Number of row to reorder starting from firstRow 
-	private PuzzleSolver solver;
+	private int row; // Row to order
+	private PuzzleSolver solver; // PuzzleSolver instance
 
-	public PuzzleThread(int row, int span, PuzzleSolver pSolver) {
-		firstRow = row;
-		columSpan = span;
+	public PuzzleThread(int r, PuzzleSolver pSolver) {
+		row = r;
 		solver = pSolver;
 	}
 
 	public void run() {
-		solver.reoderRows(firstRow, columSpan);
+		solver.reorderRow(row);
 	}
 }
