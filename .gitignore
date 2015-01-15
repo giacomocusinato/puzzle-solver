@@ -6,9 +6,6 @@ input
 # Java bytecode
 *.class
 
-# Make scrips
-*.sh
-
 # Intellij project files
 workspace.xml
 tasks.xml
