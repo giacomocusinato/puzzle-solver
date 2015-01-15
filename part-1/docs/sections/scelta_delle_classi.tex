@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% scelta_delle_classi.tex v1.0
+%
+% Relazione per il progetto PuzzleSolver (Parte 1)
+% Autore: Giacomo Cusinato
+% Materia: Programmazione Concorrente e Distribuita
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%		
+
+\section{Scelta delle classi}
+Il progetto è formato da tre principali classi appartenenti al pacchetto standard della soluzione. Esse sono, in ordine di compilazione: \texttt{IOHelper}, \texttt{Block} e \texttt{PuzzleSolver}.
+Non è stata inserita alcuna gerarchia, classe astratta o interfaccia. Questo perchè la classe principale, \texttt{PuzzleSolver}, contiene l'intero algoritmo di risoluzione e utilizza le classi \texttt{IOHelper} e \texttt{Block} per semplificare rispettivamente la lettura/scrittura su file e la rappresentazione di una tessera del puzzle. \`{E} stato scelto, quindi, di mantenere una struttura semplice in quanto un eventuale inserimento di un'interfaccia sarebbe risultato forzato.
+
+\subsection{La classe \texttt{IOHelper}}
+La classe IOHelper si occupa di eseguire tutte le operazioni di lettura e scrittura su file. Essa contiene due metodi statici che non richiedono, quindi, la creazione di un oggetto di tipo IOHelper per effettuare input e output su file. Tutte le operazioni vengono controllate tramite dei blocchi \texttt{try-catch} per gestire possibili eccezioni comuni per quanto riguarda istruzioni I/O, quali \texttt{IOException} e \texttt{InvalidPathException}.
+
+\paragraph{Metodi:}
+\begin{itemize}
+\item \texttt{public static String readString(String inputFile)}: questo metodo effettua lettura di un file nel percorso indicato del parametro formale \texttt{inputFile} e ritorna il flusso letto tramite un oggetto di tipo \texttt{String}. Il metodo utilizza classi che facilitano l'input da file come \texttt{Path} (introdotta in Java 7) che permette di identificare un percorso speficico nel file system (in questo caso \texttt{inputFile}) e \texttt{BufferedReader} che espone il metodo \texttt{readLine()} per la lettura linea per linea del file specificato. 
+
+\item \texttt{public static void writeString(String outputFile, String content)}: questo metodo effettua una scrittura della stringa contenuta nel parametro formale \texttt{content} nel percorso indicato da \texttt{inputFile}. Esso utilizza un oggetto di tipo \texttt{BufferedWriter}, costruito tramite un oggetto di tipo \texttt{OutputStreamWriter} a cui viene assegnato il flusso di output rispetto al file indicato nel parametro formale (tramite \texttt{FileOutputStream}) e il la codifica dei caratteri (\texttt{Charset}) da utilizzare.
+\end{itemize}
+
+\subsection{La classe \texttt{Block}}
+La classe \texttt{Block} rappresenta un singolo blocco (o tessera) del puzzle e contiene il valore del pezzo, un identificatore proprio e quello dei blocchi confinanti, nello posizioni nord (top), est (right), sud (bottom), ovest(left).
+Tutti i campi dati sono necessari per costruire un oggetto di tipo \texttt{Block} e possono essere letti o modificati dell'utilizzatore della classe tramite i costrutti \texttt{get-set}.
+\newpage
+
+\paragraph{Campi dati:}
+\begin{itemize}
+\item \texttt{private String id}: contiene l'identificatore unico del blocco
+\item \texttt{private String value}: contiene il valore del blocco
+\item \texttt{private String topId}: contiene l'identificatore del blocco superiore
+\item \texttt{private String rightId}: contiene l'identificatore del blocco a destra
+\item \texttt{private String bottomId}: contiene l'identificatore del blocco inferiore
+\item \texttt{private String leftId}: contiene l'identificatore del blocco a sinistra
+\end{itemize} 
+
+Risulta inoltre presente un attributo statico \texttt{EMPTY\_BLOCK}, che rappresenta l'identificatore direzionale (quindi \texttt{topId}, \texttt{rightId}, \texttt{bottomId} o \texttt{leftId}) di un pezzo vicino ad un bordo del puzzle. Il sua valore è una convenzione del progetto ed è rappresentato dalla stringa \texttt{"VUOTO"}.
+
+\subsection{La classe \texttt{PuzzleSolver}}
+La classe \texttt{PuzzleSolver} è la classe di riferimento del programma, ovvero quella che contiene l'algorimo di risoluzione ed elabora i dati in accesso ed uscita. 
+
+\paragraph{Campi dati:}
+\begin{itemize}
+\item \texttt{private int cols}: indica la lunghezza delle colonne del puzzle (ovvero il numero di righe)
+\item \texttt{private int rows}: indica la lunghezza delle righe del puzzle (ovvero il numero di colonne)
+\item \texttt{private HashMap<String, Block> puzzleMap}: un contenitore chiave-valore che contiene tutti i pezzi del puzzle (valore) identificati dal proprio \texttt{id} (chiave)
+\item \texttt{private String[][] orderedKeys}: un array bidimensionale che contiene gli \texttt{id} di tutti i pezzi. Rappresenterà il puzzle ordinato alla fine dell'algoritmo.
+\end{itemize} 
+
+\`{E} stato scelto di utilizzare un campo dati di tipo \texttt{HashMap<String, Block>} per accedere in modo casuale a tutti gli oggetti di tipo \texttt{Block} a partire dal loro \texttt{id} in modo più semplice e performante rispetto, ad esempio, and un semplice array o una lista.
+
+\paragraph{Metodi:}
+\begin{itemize}
+\item \texttt{main}: il main, come richiesto, legge i paramentri in entrata e ricava il contenuto del file indicato tramite la classe \texttt{IOHelper}. Successivamente crea un oggetto di tipo PuzzleSolver tramite la stringa ricavata e scrive su file il risultato.
+\item \texttt{private void parseContent(String inputContent)}: questo metodo inizializza il campo dati \texttt{PuzzleMap} con tutti i blocchi ricavati dall striga letta in precedenza ed è il primo metodo eseguito subito dopo la creazione dell'oggetto di tipo \texttt{PuzzleSolver}. Il parsing avviene ricavando un array di stringhe (dove ogni cella contine le informazioni di un singolo blocco secondo la notazione richiesta dal progetto) tramite il metodo \texttt{split} della classe \texttt{String}. Lo stesso procedimento viene utilizzato per ricavare i singoli attributi per il blocco. Questo è possibile sapendo che nel file di input, ogni linea rappresenta un blocco (sono quindi dal valore \texttt{System.lineSeparator()}, che ritorna il carattere che separa le linee di testo a seconda del sistema operativo) mentre ogni attributo di un pezzo è diviso dal carattere \texttt{\t} come da specifica.
+
+\item \texttt{private void reoder()}: questo metodo contiene l'algoritmo di risoluzione che verrà trattato singolarmente nel capitolo successivo. Esso è chiamato alla fine del metodo \texttt{parseContent(...)}, una volta che è stata quindi creata la mappatura di tutti i blocchi con i rispettivi \texttt{id}. Il metodo inizializza il campo dati \texttt{orderedKeys} per inserire tutte le chiavi ed ordinarle, facendo uso dell'helper \texttt{rowSwap(int firstColumn, int secondColumn)} per effettuare un swap tra due determinate righe.
+\end{itemize}
+
+Tramite la mappa \texttt{puzzleMap} e l'array \texttt{orderedKeys} è quindi possibile ricavare la soluzione del puzzle, avendo a disposizione le chiavi ordinate nell'array e le coppie chiave-valori nella mappa. La classe \texttt{PuzzleSolver}, inoltre, espone tre metodi per la stampa della soluzione in forma lineare, tabellare e come richiesto da progetto.
