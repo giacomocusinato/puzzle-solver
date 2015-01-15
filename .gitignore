@@ -1,5 +1,7 @@
-# Output dir
+# Directories
 out
+temp
+input
 
 # Make scrips
 *.sh
