@@ -4,16 +4,16 @@
 # Data creazione: 2014/07/12
 #
 
-progetto: src/Init.class src/Generator.class src/Block.class
+progetto: Init.class Generator.class Block.class
 
-Init.class: src/Init.java
-	javac src/Init.java
+Init.class: Init.java
+	javac Init.java
 
-Generator.class: src/Generator.java
-	javac src/Generator.java
+Generator.class: Generator.java
+	javac Generator.java
 
-Block.class: src/Block.java
-	javac src/Block.java
+Block.class: Block.java
+	javac Block.java
 
 clean: 
-	rm -f src/*.class
+	rm -f *.class
