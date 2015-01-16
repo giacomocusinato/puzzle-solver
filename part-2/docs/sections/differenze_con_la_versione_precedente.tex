@@ -1,0 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% scelta_delle_classi.tex v1.0
+%
+% Relazione per il progetto PuzzleSolver (Parte 1)
+% Autore: Giacomo Cusinato
+% Materia: Programmazione Concorrente e Distribuita
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Differenze con la versione precedente}
+Il progetto non ha subito molte variazioni rispetto alla versione precedente in quanto le operazioni effettuate dall'algorimo scelto sono
+risultate facilmente portabili ad un'architettura concorrente. Di seguito sono riportate le modifiche effettuate alla classe principale,
+contentente l'algorimo di risoluzione, ed una semplice descrizione della nuova classe \texttt{PuzzleThread}.
+
+
+
+\subsection{La classe \texttt{PuzzleSolver}}
+La classe \texttt{PuzzleSolver} è la classe di riferimento del programma, ovvero quella che contiene l'algorimo di risoluzione ed elabora
+i dati in accesso ed uscita.
+
+\paragraph{Il metodo \texttt{void reoderRow(int row)}:}

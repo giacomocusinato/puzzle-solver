@@ -1,0 +1,21 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% scelta_dell_algoritmo.tex v1.0
+%
+% Relazione per il progetto PuzzleSolver (Parte 1)
+% Autore: Giacomo Cusinato
+% Materia: Programmazione Concorrente e Distribuita
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Scelta dell'algoritmo}
+
+\subsection{Visione generale}
+L'algoritmo di risoluzione applicato può essere diviso in tre punti distinti:
+\begin{enumerate}
+\item Inidividuare tutti i primi blocchi di ogni riga ed inserire le chiavi in prima posizione per ogni riga dell'array
+\item Inserire le rimamenti chiavi partendo dalla prima presente per ogni riga (noto)
+\item Riordinare le righe dell'array a seconda delle chiavi iniziali e finali per ogni riga
+\end{enumerate}
+
+\subsection{Visione particolare}
+Come citato nella sezione precedente, l'algoritmo di risoluzione utilizza il numero di righe (\texttt{cols}), il numero di colonne (\texttt{rows}), la mappa contenente le coppie id-blocco (\texttt{puzzleMap}) ed un array (\texttt{orderedKeys}) di dimensione \texttt{rows x cols} che al termine del procedimento conterrà le chiavi ordinate dei blocchi. La prima parte è facilmente risolvibile identificando tutti i blocchi del puzzle (risolto) in prima posizione per ogni riga, ovvero con campo dati \texttt{leftId = EMPTY\_BLOCK}. Una volta identificati tali pezzi, tramite il capo dati \texttt{rightId} è possibile individuare ricorsivamente tutti i blocchi successivi (istruzione \texttt{ orderedKeys[r][c] = puzzleMap.get(orderedKeys[r-1][c]).getRightId()}), per ogni riga (seconda parte). A questo punto dell'algoritmo, l'array ottenuto avrà tutti i blocchi ordinati per singola riga, ma ognuna di queste sarà nella posizione errata rispetto al puzzle. Nella terza parte, quindi, viene effettuato l'ordinameto delle righe, posizionando inizialmente la prima (nel primo blocco vale \texttt{topId = EMPTY\_BLOCK}) e riordinando le successive con lo stesso principio precedente, ma in questo caso il campo dati da confrontare è \texttt{bottomId}. Al termine dell'algoritmo, quindi, l'array \texttt{orderedKeys} conterrà tutte le chiavi ordinate, e lo soluzione è facilmente ottenibile scorrendo \texttt{orderedKeys} e, per ogni chiave, recuperare il valore dal set \texttt{puzzleMap}.
