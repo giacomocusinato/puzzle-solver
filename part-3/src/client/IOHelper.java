@@ -11,7 +11,7 @@ import java.nio.file.Paths;
  *
  * Expose methods for reading/writing Strings to file.
  *
- * Part of the PuzzleResolver project for Parallel and Concurrent Programming
+ * Part of the PuzzleSolver project for Parallel and Concurrent Programming
  * teaching at Padova university (Università degli Studi di Padova).
  *
  * @author Giacomo Cusinato
@@ -81,4 +81,3 @@ public class IOHelper {
 
     }
 }
-

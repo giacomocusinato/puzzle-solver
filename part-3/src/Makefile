@@ -1,16 +1,38 @@
-progetto : PuzzleSolver.class IOHelper.class Block.class PuzzleThread.class
+JC = javac
 
-PuzzleSolver.class : PuzzleSolver.java
-	javac PuzzleSolver.java
+.SUFFIXES: .java .class
 
-IOHelper.class : IOHelper.java
-	javac IOHelper.java
+.java.class:
+	$(JC) $*.java
 
-Block.class : Block.java
-	javac Block.java
 
-PuzzleThread.class : PuzzleThread.java
-	javac PuzzleThread.java
+CLASSES = server/Block.java \
+	server/InitServer.java \
+	server/PuzzleSolverServer.java \
+	server/PuzzleThread.java \
+	client/PuzzleSolverClient.java \
+	client/IOHelper.java 
 
-clean :
-	rm -f *.class
+default: classes
+
+classes: $(CLASSES:.java=.class)
+
+clean:
+	$(RM) *.class
+	$(RM) client/*.class
+	$(RM) server/*.class
+
+startServer:
+	rmiregistry &
+	sleep 1
+	xterm -e -hold "java PuzzleSolverServer" &
+
+
+startClient:
+	sleep 1
+	xterm -e -hold "java PuzzleSolverClient" &
+
+stop:
+	killall -q rmiregistry &
+	sleep 1
+	killall -q xterm &
