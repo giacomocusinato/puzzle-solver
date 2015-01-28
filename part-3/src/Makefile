@@ -6,12 +6,12 @@ JC = javac
 	$(JC) $*.java
 
 
-CLASSES = server/Block.java \
+CLASSES = client/PuzzleSolverClient.java \
+	client/IOHelper.java \
+	server/Block.java \
 	server/InitServer.java \
 	server/PuzzleSolverServer.java \
-	server/PuzzleThread.java \
-	client/PuzzleSolverClient.java \
-	client/IOHelper.java 
+	server/PuzzleThread.java 
 
 default: classes
 
