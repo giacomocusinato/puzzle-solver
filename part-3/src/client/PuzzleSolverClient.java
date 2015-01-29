@@ -60,6 +60,6 @@ public class PuzzleSolverClient {
         String serverName = args[2];
 
         PuzzleSolverClient solver =
-        new PuzzleSolverClient(inputPath, outputPath, serverName);
+            new PuzzleSolverClient(inputPath, outputPath, serverName);
     }
 }

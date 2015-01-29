@@ -1,5 +1,6 @@
 import java.rmi.*;
 import java.rmi.server.*;
+import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -13,10 +14,11 @@ public class PuzzleSolverServer extends UnicastRemoteObject implements ISolver {
     private String[][] orderedKeys;
     private int cols = 0; // Size of a column (number of rows)
     private int rows = 0; // Size of a row (number of columns)
+    private static final String REMOTE_OBJ = "PuzzleSolver";
 
     public PuzzleSolverServer() throws RemoteException { }
 
-    public String reorder(String inputContent) throws RemoteException {
+    public synchronized String reorder(String inputContent) throws RemoteException {
         parseContent(inputContent);
         reorderPuzzle();
 
@@ -70,6 +72,7 @@ public class PuzzleSolverServer extends UnicastRemoteObject implements ISolver {
             }
         }
 
+        try { Thread.sleep(2000); } catch (Exception e) {}
 
         ExecutorService executor = Executors.newFixedThreadPool(5);
         for (int r = 0; r < cols; ++r) {
@@ -191,6 +194,25 @@ public class PuzzleSolverServer extends UnicastRemoteObject implements ISolver {
         orderedKeys = null;
         cols = 0;
         rows = 0;
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Argument list is empty. Need server name.");
+            return;
+        }
+
+        String uri = String.format("rmi://%s/%s", args[0], REMOTE_OBJ);
+        try {
+            PuzzleSolverServer s = new PuzzleSolverServer();
+            Naming.rebind(uri, s);
+        } catch(RemoteException e) {
+            System.out.println(e.getMessage());
+        } catch (MalformedURLException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

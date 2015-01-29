@@ -1,19 +1,28 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ambiente_di_sviluppo.tex v2.0
+% ambiente_di_sviluppo.tex v3.0
 %
-% Relazione per il progetto PuzzleSolver (Parte 2)
+% Relazione per il progetto PuzzleSolver (Parte 3)
 % Autore: Giacomo Cusinato
 % Materia: Programmazione Concorrente e Distribuita
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Ambiente di sviluppo}
+\section{Ambiente di sviluppo e file di progetto}
 Il progetto \`{e} stato realizzato in ambiente Mac OS (versione Yosemite 10.10) sia per la parte relativa al codice Java,
 sia per quella relativa alla documentazione.
 \`{E} stato inoltre testato con successo nella macchine di laboratorio con i dovuti comandi per impostare Java 7 come
 versione principale del sistema.
 Per la stesura della relazione, invece, \`{e} stato utilizzato il linguaggio \LaTeX{}  tramite la ditribuzione MacTex.
-Nel progetto, come richiesto, \`{e} stato incluso un makefile per semplificare la complilazione dei sorgenti ed un script bash
-accetta due parametri in ingresso (ovvero l'input path e l'output path dei file richiesti) e si occupa di compilare le sorgenti
-Java ed avviare il main del programma. Lo script è stato reso eseguibile e può essere lanciato semplicemente col comando
- \texttt{"./puzzlesolver.sh inputPath outputPath"} dalla cartella in cui è presente il file.
+Come richiesto da specifica, oltre al codice sorgente sono stati inseriti i seguenti file:
+\begin{itemize}
+    \item \texttt{Makefile}: si occupa di compilare i sorgenti Java
+    \item \texttt{puzzlesolverserver.sh}: script bash che si occupa di effettuare il \texttt{make} del progetto
+    ed avviare il main dell'applicativo server. Accetta come parametro il nome del server da passare al programma Java.
+    \item \texttt{puzzlesolverclient.sh}: script bash che si occupa di effettuare il make del progetto, se necessario,
+    ed avviare il main dell'applicativo client. Accetta tre parametri nel seguente ordine: path del file di input, path
+    del file di outpute nome del server.
+\end{itemize}
+Gli script sono stati resi eseguibili tramite il comando bash \texttt{"chmod 754 nomefile"} e possono essere lanciati
+semplicemente col comando \texttt{"./puzzlesolver.sh inputPath outputPath"} dalla cartella in cui è presente il file.
+
+\clearpage
