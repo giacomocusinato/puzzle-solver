@@ -43,6 +43,14 @@ public class PuzzleSolverClient {
         } catch (RemoteException e) {
             System.out.println(e.getMessage());
             return;
+        } catch (Exception e ) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                solvedPuzzle = solver.reorder(inputContent);
+            } catch (Exception e) { 
+                System.out.println(e.getMessage());
+            }
         }
 
         // Output the retrieved string
