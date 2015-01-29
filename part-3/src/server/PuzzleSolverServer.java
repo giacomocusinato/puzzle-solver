@@ -19,14 +19,11 @@ public class PuzzleSolverServer extends UnicastRemoteObject implements ISolver {
     public PuzzleSolverServer() throws RemoteException { }
 
     public synchronized String reorder(String inputContent) throws RemoteException {
+        reset();
         parseContent(inputContent);
         reorderPuzzle();
 
-        String result = getPuzzleResult();
-
-        reset();
-
-        return result;
+        return getPuzzleResult();
     }
 
 
