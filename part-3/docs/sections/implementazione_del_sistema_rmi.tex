@@ -47,3 +47,12 @@ all'oggetto instanziato sul server. Questo è possibile tramite il metodo static
 associato. Inoltre il client, che contiene a sua volta la definizione dell'intefaccia \texttt{ISolver}, può ottenere il
 riferimento remoto effettuando un downcast proprio ad un oggetto di tipo \texttt{ISolver}, su cui è possibile invocare il metodo
 remoto \texttt{reorder(String inputPath)}.
+
+
+\subsection{Robustezza del sistema}
+
+Per risolvere un eventuale errore di connessione o comunicazione tra server e client, il metodo remoto \texttt{solver(String inputPath)}
+invocato dalla classe \texttt{PuzzleSolverClient} è stato racchiuso in un costrutto try-catch-finally.
+In particolare, nel blocco finally, è stata inserita nuovamente la chiamata al metodo remoto, anch'esso con un'opportuna gestione
+delle eccezioni. In questo modo, in caso venga scatenata un'eccezione lato server o client, questa sarà incapsulata nel blocco
+catch e grazie al costrutto finally, verrà ritentata la chiamata al metodo remoto.

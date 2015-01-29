@@ -16,7 +16,6 @@ tasks.xml
 *.toc
 *.aux
 *.gz
-*.pdf
 
 # Text files
 *.txt
