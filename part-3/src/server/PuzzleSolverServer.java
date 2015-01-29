@@ -72,8 +72,6 @@ public class PuzzleSolverServer extends UnicastRemoteObject implements ISolver {
             }
         }
 
-        try { Thread.sleep(2000); } catch (Exception e) {}
-
         ExecutorService executor = Executors.newFixedThreadPool(5);
         for (int r = 0; r < cols; ++r) {
             Runnable thread = new PuzzleThread(r, this);
