@@ -20,9 +20,17 @@ Come richiesto da specifica, oltre al codice sorgente sono stati inseriti i segu
     ed avviare il main dell'applicativo server. Accetta come parametro il nome del server da passare al programma Java.
     \item \texttt{puzzlesolverclient.sh}: script bash che si occupa di effettuare il make del progetto, se necessario,
     ed avviare il main dell'applicativo client. Accetta tre parametri nel seguente ordine: path del file di input, path
-    del file di outpute nome del server.
+    del file di output e nome del server.
 \end{itemize}
 Gli script sono stati resi eseguibili tramite il comando bash \texttt{"chmod 754 nomefile"} e possono essere lanciati
-semplicemente col comando \texttt{"./puzzlesolver.sh inputPath outputPath"} dalla cartella in cui è presente il file.
-
+semplicemente col comando \texttt{"./nomescript.sh args"} dalla cartella in cui è presente il file.
+Di seguito gli step per lanciare il programma in modo corretto:
+\begin{enumerate}
+    \item posizionarsi nella cartella server e lanciare il comando \texttt{rmiregistry \&}, in caso tale comando fosse
+    già stato eseguito, il sistema scatenerà un'eccezione
+    \item spostarsi nella root del progetto ed avviare il server tramite lo script \newline \texttt{puzzlesolverserver.sh} che
+    accetta in input il nome dell'host come parametro (il nome dovrà essere quello di un server esistente, come \texttt{localhost}).
+    \item da una seconda shell, avviare il client tramite lo script \texttt{puzzlesolverclient.sh} che accetta come parametri
+    il file di input, il file di output ed il nome del server (\texttt{localhost}).
+\end{enumerate}
 \clearpage
